@@ -11,7 +11,7 @@ exports.getAllReservations = async (req, res) => {
 };
 
 // Obtenir une réservation par ID
-exports.getReservationsById = async (req, res) => {
+exports.getReservationById = async (req, res) => {
     try {
         const reservation = await Reservation.findOne({ _id: req.params.idReservation, catwayNumber: req.params.id});
         if (!reservation) return res.status(404).json({ error: 'Reservation non trouvée'});
@@ -29,7 +29,7 @@ exports.createReservation = async (req, res) => {
             clientName: req.body.clientName,
             boatName: req.body.boatName,
             checkIn: req.body.checkIn,
-            chekcOut: req.body.chekcOut
+            checkOut: req.body.chekcOut
 
         });
         await newReservation.save();
