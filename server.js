@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const connectDB = require('./db/mongoose'); // Importer le fichier mongoose
+const connectDB = require('./config/mongoose'); // Importer le fichier mongoose
 const catwaysRoutes = require('./routes/catways'); // Importer les routes
 const reservationsRoutes = require('./routes/reservations');
 
