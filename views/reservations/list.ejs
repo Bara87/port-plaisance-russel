@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Réservations</title>
+</head>
+<body>
+    <h1>Liste des Réservations</h1>
+    <ul>
+        <!-- Boucle sur la liste des réservations -->
+        <% reservations.forEach(reservation => { %>
+            <li>
+                <a href="/reservation/<%= reservation._id %>">Réservation de <%= reservation.clientName %> pour le Catway n° <%= reservation.catwayNumber %></a>
+            </li>
+        <% }); %>
+    </ul>
+
+    <p><a href="/dashboard">Retour au tableau de bord</a></p>
+</body>
+</html>

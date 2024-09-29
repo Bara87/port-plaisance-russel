@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de la Réservation</title>
+</head>
+<body>
+    <h1>Réservation de <%= reservation.clientName %></h1>
+    <p>Catway n° : <%= reservation.catwayNumber %></p>
+    <p>Nom du bateau : <%= reservation.boatName %></p>
+    <p>Date d'arrivée : <%= reservation.checkIn.toLocaleDateString() %></p>
+    <p>Date de départ : <%= reservation.checkOut.toLocaleDateString() %></p>
+    <!-- Ajoutez ici d'autres informations si nécessaire -->
+
+    <p><a href="/reservations">Retour à la liste des réservations</a></p>
+</body>
+</html>
