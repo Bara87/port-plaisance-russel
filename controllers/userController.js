@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
         // Comparer le mot de passe
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'Mot de passe incorrect' });
+            return res.status(400).render('login', { error: 'Mot de passe incorrect' });
         }
 
         // Générer un JWT
@@ -30,14 +30,22 @@ const loginUser = async (req, res) => {
         // Supprimer le mot de passe avant de retourner l'utilisateur (optionnel)
         delete user._doc.password;
 
-        // Ajouter le token dans l'en-tête Authorization (optionnel)
-        res.header('Authorization', 'Bearer ' + token);
+       // Ajouter le token dans les cookies
+       res.cookie('token', token, { httpOnly: true, secure: true }); // Pour une meilleure sécurité
 
-        // Retourner l'utilisateur et le token
-        res.status(200).json({ message: 'Authentification réussie', token, user });
+       
+        // Redirection vers le dashboard
+        res.redirect('/dashboard');
+
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return res.status(500).render('login', { error: 'Erreur serveur' });
     }
+        
+};
+
+const logoutUser = (req, res) => {
+    res.clearCookie('token');  // Supprimer le cookie
+    res.redirect('/login');  // Rediriger vers la page de connexion
 };
 
 // Créer un utilisateur
@@ -92,6 +100,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
     generateToken,
     loginUser,
+    logoutUser,
     createUser,
     updateUser,
     deleteUser,

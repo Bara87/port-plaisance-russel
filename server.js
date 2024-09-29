@@ -19,6 +19,10 @@ app.use(express.json()); // Middleware pour parser le corps des requêtes JSON
 app.use(express.urlencoded({ extended: true }));
 
 
+// Définir le moteur de templates comme EJS
+app.set('view engine', 'ejs');
+
+
 
 const PORT = process.env.PORT || 6000;
 

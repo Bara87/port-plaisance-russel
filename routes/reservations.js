@@ -7,9 +7,9 @@ const authMiddleware = require('../middleware/auth');
 
 
 // Routes pour les reservations
-router.get('/:id/reservations', authMiddleware, getAllReservations);
-router.get('/:id/reservations/:idReservation', authMiddleware, getReservationById);
-router.post('/:id/reservations', authMiddleware, createReservation);
-router.delete('/:id/reservations/:idReservation', authMiddleware, deleteReservation);
+router.get('/:id/reservations', authMiddleware, getAllReservations); // Route pour la liste des reservations
+router.get('/:id/reservations/:idReservation', authMiddleware, getReservationById); // Route pour le detail d'une reservation
+router.post('/:id/reservations', authMiddleware, createReservation); // Route pour la création d'une nouvelle reservation
+router.delete('/:id/reservations/:idReservation', authMiddleware, deleteReservation); // Route pour supprimer une reservation
 
 module.exports = router;

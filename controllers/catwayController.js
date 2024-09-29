@@ -5,7 +5,7 @@ const Catway = require('../models/Catway');
 exports.getAllCatways = async (req, res) => {
     try {
         const catways = await Catway.find();
-        res.json(catways);
+        res.render('catways/list', { catways });
     } catch (error) {
         res.status(500).json({ error: 'Erreur serveur' });
     }
@@ -16,7 +16,7 @@ exports.getCatwayById = async (req, res) => {
     try{
         const catway = await Catway.findById(req.params.id);
         if (!catway) return res.status(404).json({ error: 'Catway non trouvé'});
-        res.json(catway);
+        res.render('catways/detail', { catway });
     } catch (error) {
         res.status(500).json({ error: 'Erreur serveur'});
     }

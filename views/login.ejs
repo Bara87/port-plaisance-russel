@@ -8,6 +8,11 @@
     <h1>Bienvenue sur Port Plaisance Russel</h1>
     <p>Une application pour gérer les réservations et les catways.</p>
 
+     <!-- Affichage d'un message d'erreur si présent -->
+     <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
     <h2>Connexion</h2>
     <form action="/login" method="POST">
         <input type="email" name="email" placeholder="Email" required>

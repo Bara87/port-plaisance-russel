@@ -4,7 +4,7 @@ const Reservation = require ('../models/Reservation');
 exports.getAllReservations = async (req, res) => {
     try {
         const reservations = await Reservation.find({ catwayNumber: req.params.id });
-        res.json(reservations);
+        res.render('reservations/list', { reservations });
     } catch (error) {
         res.status(500).json({ error: 'Erreur serveur'});
     }
@@ -15,7 +15,7 @@ exports.getReservationById = async (req, res) => {
     try {
         const reservation = await Reservation.findOne({ _id: req.params.idReservation, catwayNumber: req.params.id});
         if (!reservation) return res.status(404).json({ error: 'Reservation non trouvée'});
-        res.json(reservation);
+        res.render('reservations/detail', { reservation });
     } catch (error) {
         res.status(500).json({ error: 'Erreur serveur'});
     }
