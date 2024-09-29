@@ -23,13 +23,13 @@ exports.getCatwayById = async (req, res) => {
 };
 
 // Créer un nouveau catway
-exports.createCatway = async (req, resp) => {
+exports.createCatway = async (req, res) => {
     try {
         const newCatway = new Catway(req.body);
         await newCatway.save();
         res.status(201).json(newCatway);
     } catch (error) {
-        res.status(400).json({ error: 'Erreur lors de la création'})
+        res.status(400).json({ error: 'Erreur lors de la création', details: error.message})
     }
 };
 
@@ -40,7 +40,7 @@ exports.updateCatway = async (req, res) => {
         if (!updatedCatway) return res.status(404).json({ error: 'Catway non trouvé'});
         res.json(updatedCatway);
     } catch (error) {
-        res.status(400).json({ error: 'Erreur lors de la mise à jour'});
+        res.status(400).json({ error: 'Erreur lors de la mise à jour', details: error.message});
     }
 };
 

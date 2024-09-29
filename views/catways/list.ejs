@@ -1,0 +1,18 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Catways</title>
+</head>
+<body>
+    <h1>Liste des Catways</h1>
+    <ul>
+        <!-- Boucle sur la liste des catways -->
+        <% catways.forEach(catway => { %>
+            <li>
+                <a href="/catway/<%= catway._id %>">Catway n° <%= catway.catwayNumber %></a>
+            </li>
+        <% }); %>
+    </ul>
+
+    <p><a href="/dashboard">Retour au tableau de bord</a></p> <!-- Lien vers le tableau de bord -->
+</body>
+</html>
