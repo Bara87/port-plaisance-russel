@@ -8,7 +8,9 @@
         <!-- Boucle sur la liste des catways -->
         <% catways.forEach(catway => { %>
             <li>
-                <a href="/catway/<%= catway._id %>">Catway n° <%= catway.catwayNumber %></a>
+                <a href="/catways/detail/<%= catway._id %>">
+                    Catway n° <%= catway.catwayNumber %>
+                </a>
             </li>
         <% }); %>
     </ul>

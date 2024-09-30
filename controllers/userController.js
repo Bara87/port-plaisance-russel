@@ -7,45 +7,33 @@ const generateToken = (user) => {
     return jwt.sign({ id: user._id, name: user.name, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 };
 
-// Connexion d'un utilisateur
+// Fonction pour se connecter
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body; // Récupérer les informations du formulaire
+    let someErrorVariable = null;
 
     try {
-        // Rechercher l'utilisateur par email et exclure certains champs
-        const user = await User.findOne({ email }, '-__v -createdAt -updatedAt');
-        if (!user) {
-            return res.status(404).json({ message: 'Utilisateur non trouvé' });
+        const user = await User.findOne({ email });
+
+        if (!user || !user.comparePassword(password)) { // Comparer les mots de passe
+            someErrorVariable = 'Nom d’utilisateur ou mot de passe incorrect.';
+            return res.render('index', { error: someErrorVariable }); // Rendre à nouveau la page index avec l'erreur
         }
 
-        // Comparer le mot de passe
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).render('login', { error: 'Mot de passe incorrect' });
-        }
-
-        // Générer un JWT
-        const token = generateToken(user);
-
-        // Supprimer le mot de passe avant de retourner l'utilisateur (optionnel)
-        delete user._doc.password;
-
-       // Ajouter le token dans les cookies
-       res.cookie('token', token, { httpOnly: true, secure: true }); // Pour une meilleure sécurité
-
-       
-        // Redirection vers le dashboard
-        res.redirect('/dashboard');
-
-    } catch (error) {
-        return res.status(500).render('login', { error: 'Erreur serveur' });
+        // Générer le token et l'envoyer dans un cookie
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, { httpOnly: true });; // Assurez-vous que le cookie est configuré
+        res.redirect('/users/dashboard'); // Redirige vers le tableau de bord après connexion réussie
+    } catch (err) {
+        console.error('Erreur lors de la connexion:', err);
+        someErrorVariable = 'Une erreur est survenue lors de la connexion.';
+        res.render('index', { error: someErrorVariable }); // Rendre à nouveau la page index avec l'erreur
     }
-        
 };
 
 const logoutUser = (req, res) => {
     res.clearCookie('token');  // Supprimer le cookie
-    res.redirect('/login');  // Rediriger vers la page de connexion
+    res.redirect('/index');  // Rediriger vers la page de connexion
 };
 
 // Créer un utilisateur

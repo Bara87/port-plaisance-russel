@@ -4,10 +4,14 @@ const { getAllCatways, getCatwayById, createCatway, updateCatway, deleteCatway }
 const authMiddleware = require('../middleware/auth');
 
 // Routes pour les catways
-router.get('/', authMiddleware, getAllCatways); // Route pour la liste des catways
-router.get('/:id', authMiddleware, getCatwayById); // Route pour le detail d'un catway
-router.post('/', authMiddleware, createCatway); // Route pour créer un nouveau catway
-router.put('/:id', authMiddleware, updateCatway); // Route pour mettre à jour un catway
-router.delete('/:id', authMiddleware, deleteCatway); // Route pour supprimer un catway
+
+
+// Route protégée pour afficher la page list de catways
+router.get('/list', authMiddleware, getAllCatways);
+
+router.get('/detail/:id', authMiddleware, getCatwayById); // Route pour le detail d'un catway
+router.post('/create', authMiddleware, createCatway); // Route pour créer un nouveau catway
+router.put('/update/:id', authMiddleware, updateCatway); // Route pour mettre à jour un catway
+router.delete('/delete/:id', authMiddleware, deleteCatway); // Route pour supprimer un catway
 
 module.exports = router;

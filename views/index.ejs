@@ -9,12 +9,12 @@
     <p>Une application pour gérer les réservations et les catways.</p>
 
      <!-- Affichage d'un message d'erreur si présent -->
-     <% if (error) { %>
+     <% if (typeof error !== 'undefined' && error) { %>
         <p style="color: red;"><%= error %></p>
     <% } %>
 
     <h2>Connexion</h2>
-    <form action="/login" method="POST">
+    <form action="/users/login" method="POST">
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>

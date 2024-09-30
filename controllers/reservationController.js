@@ -3,7 +3,7 @@ const Reservation = require ('../models/Reservation');
 // Obtenir toutes les réservations pour un catway
 exports.getAllReservations = async (req, res) => {
     try {
-        const reservations = await Reservation.find({ catwayNumber: req.params.id });
+        const reservations = await Reservation.find();
         res.render('reservations/list', { reservations });
     } catch (error) {
         res.status(500).json({ error: 'Erreur serveur'});
@@ -13,7 +13,7 @@ exports.getAllReservations = async (req, res) => {
 // Obtenir une réservation par ID
 exports.getReservationById = async (req, res) => {
     try {
-        const reservation = await Reservation.findOne({ _id: req.params.idReservation, catwayNumber: req.params.id});
+        const reservation = await Reservation.findById(req.params.idReservation);
         if (!reservation) return res.status(404).json({ error: 'Reservation non trouvée'});
         res.render('reservations/detail', { reservation });
     } catch (error) {

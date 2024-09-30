@@ -7,7 +7,7 @@ const authMiddleware = (req, res, next) => {
     const token = req.cookies.token; // 'token' est le nom du cookie défini
 
     if (!token) {
-        return res.redirect('/login');
+        return res.redirect('/users/index');
     }
 
     try {
@@ -16,7 +16,7 @@ const authMiddleware = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (error) {
-        return res.redirect('/login');
+        return res.redirect('/users/index');
     } 
 };
 

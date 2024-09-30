@@ -10,8 +10,7 @@
         <!-- Boucle sur la liste des réservations -->
         <% reservations.forEach(reservation => { %>
             <li>
-                <a href="/reservation/<%= reservation._id %>">Réservation de <%= reservation.clientName %> pour le Catway n° <%= reservation.catwayNumber %></a>
-            </li>
+                <a href="/reservations/detail/<%= reservation._id %>">Réservation de <%= reservation.clientName %> pour le Catway n° <%= reservation.catwayNumber %></a>
         <% }); %>
     </ul>
 
