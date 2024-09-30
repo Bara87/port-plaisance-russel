@@ -7,6 +7,9 @@ const reservationsRoutes = require('./routes/reservations');
 const userRoutes = require('./routes/users'); // Chemin vers vos routes
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
+
+
 
 
 // Déterminer l'environnement (dev, prod, etc.)
@@ -28,6 +31,9 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Middleware pour interpréter les méthodes HTTP simulées
+app.use(methodOverride('_method'));
+
 const PORT = process.env.PORT || 6000;
 
 
@@ -40,9 +46,9 @@ app.use('/reservations', reservationsRoutes);
 app.use('/users', userRoutes); // Utilisation des routes utilisateurs
 
 // Middleware de gestion des erreurs
-app.use((err, req, res, next) => {
-  console.error(err.stack); // Log l'erreur dans la console
-  res.status(500).json({ message: 'Une erreur est survenue.', error: err.message });
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
 });
 
 
