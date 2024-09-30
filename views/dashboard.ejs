@@ -43,21 +43,19 @@
     </form>
 
     <!-- Formulaire pour modifier un catway -->
-    <h2>Modifier un catway</h2>
-    <form action="/catways/:id" method="POST">
+    <h2>Modifier l'état d'un catway</h2>
+    <form action="/catways/updateState" method="POST">
         <input type="number" name="catwayNumber" placeholder="Numéro du catway" required>
-        <input type="text" name="newType" placeholder="Nouveau type (long/short)" required>
         <input type="text" name="newCatwayState" placeholder="Nouvel état du catway" required>
         <button type="submit">Modifier</button>
     </form>
-
+    
     <!-- Formulaire pour supprimer un catway -->
     <h2>Supprimer un catway</h2>
-    <form action="/catways/:id" method="POST">
+    <form action="/catways/delete" method="POST">
         <input type="number" name="catwayNumber" placeholder="Numéro du catway" required>
         <button type="submit">Supprimer</button>
     </form>
-
     <!-- Formulaire pour créer une réservation -->
     <h2>Créer une réservation</h2>
     <form action="/reservations/create" method="POST">
