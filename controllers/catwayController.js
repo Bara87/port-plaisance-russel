@@ -38,7 +38,7 @@ exports.updateCatway = async (req, res) => {
     try {
         const updatedCatway = await Catway.findByIdAndUpdate(req.params.id, req.body, { new: true});
         if (!updatedCatway) return res.status(404).json({ error: 'Catway non trouvé'});
-        res.json(updatedCatway);
+        res.redirect(`/catways/detail/${id}`); // Rediriger vers le détail du catway mis à jour
     } catch (error) {
         res.status(400).json({ error: 'Erreur lors de la mise à jour', details: error.message});
     }
@@ -49,7 +49,7 @@ exports.deleteCatway = async (req, res) => {
     try {
         const deletedCatway = await Catway.findByIdAndDelete(req.params.id);
         if (!deletedCatway) return res.status(404).json({ error: 'Catway non trouvé'});
-        res.json({ message: 'Catway supprimé'});
+        res.redirect('/catways/list'); // Rediriger vers la liste des catways
     } catch (error) {
         res.status(500).json({ error: 'Erreur serveur'});
     }

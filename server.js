@@ -5,6 +5,9 @@ const connectDB = require('./config/mongoose'); // Importer le fichier mongoose
 const catwaysRoutes = require('./routes/catways'); // Importer les routes
 const reservationsRoutes = require('./routes/reservations');
 const userRoutes = require('./routes/users'); // Chemin vers vos routes
+const path = require('path');
+const cookieParser = require('cookie-parser');
+
 
 // Déterminer l'environnement (dev, prod, etc.)
 const env = process.env.NODE_ENV || 'dev';
@@ -18,11 +21,12 @@ const app = express();
 app.use(express.json()); // Middleware pour parser le corps des requêtes JSON
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser());
 
-// Définir le moteur de templates comme EJS
+
+// Configuration du moteur de template
 app.set('view engine', 'ejs');
-
-
+app.set('views', path.join(__dirname, 'views'));
 
 const PORT = process.env.PORT || 6000;
 
@@ -40,6 +44,7 @@ app.use((err, req, res, next) => {
   console.error(err.stack); // Log l'erreur dans la console
   res.status(500).json({ message: 'Une erreur est survenue.', error: err.message });
 });
+
 
 
 // Démarrer le serveur

@@ -2,19 +2,24 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController'); // Importer le contrôleur
-const authMiddleware = require('../middleware/authMiddleware'); // Importer le middleware
+const authMiddleware = require('../middleware/auth'); // Importer le middleware
 
 // Créer un utilisateur (accessible à tous, pas besoin d'authentification)
-router.post('/users/create', userController.createUser);
+router.post('/create', userController.createUser);
 
 // Modifier un utilisateur (nécessite authentification)
-router.post('/users/update', authMiddleware, userController.updateUser);
+router.post('/update/:id', authMiddleware, userController.updateUser);
 
 // Supprimer un utilisateur (nécessite authentification)
-router.post('/users/delete', authMiddleware, userController.deleteUser);
+router.post('/delete/:id', authMiddleware, userController.deleteUser);
 
 // Route de connexion dans userRoutes.js
 router.post('/login', userController.loginUser);
+
+router.get('/index', (req, res) => {
+    // Pas besoin de logique pour récupérer des utilisateurs ou gérer des erreurs
+    res.render('index', { error: null }); // Passer une valeur nulle pour 'error'
+});
 
 // Route vers le tableau de bord (nécessite authentification)
 router.get('/dashboard', authMiddleware, (req, res) => {
