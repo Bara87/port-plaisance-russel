@@ -18,7 +18,7 @@
 
     <!-- Formulaire pour modifier un utilisateur -->
     <h2>Modifier un utilisateur</h2>
-    <form action="/users/update" method="POST">
+    <form action="/users/update/:id" method="POST">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <input type="text" name="newName" placeholder="Nouveau nom" required>
         <input type="email" name="newEmail" placeholder="Nouvel email" required>
@@ -28,7 +28,7 @@
 
     <!-- Formulaire pour supprimer un utilisateur -->
     <h2>Supprimer un utilisateur</h2>
-    <form action="/users/delete" method="POST">
+    <form action="/users/delete/:id" method="POST">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <button type="submit">Supprimer</button>
     </form>
@@ -52,7 +52,8 @@
     
     <!-- Formulaire pour supprimer un catway -->
     <h2>Supprimer un catway</h2>
-    <form action="/catways/delete" method="POST">
+    <form action="/catways/delete/:catwayNumber" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
         <input type="number" name="catwayNumber" placeholder="Numéro du catway" required>
         <button type="submit">Supprimer</button>
     </form>
@@ -69,8 +70,8 @@
 
     <!-- Formulaire pour supprimer une réservation -->
     <h2>Supprimer une réservation</h2>
-    <form action="/reservations/delete" method="POST">
-        <input type="number" name="reservationId" placeholder="ID de la réservation" required>
+    <form action="/reservations/delete/:id" method="POST">
+        <input type="text" name="reservationId" placeholder="ID de la réservation" required>
         <button type="submit">Supprimer</button>
     </form>
 

@@ -24,6 +24,9 @@ const app = express();
 app.use(express.json()); // Middleware pour parser le corps des requêtes JSON
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware pour gérer la méthode override
+app.use(methodOverride('_method'));
+
 app.use(cookieParser());
 
 
@@ -31,8 +34,7 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middleware pour interpréter les méthodes HTTP simulées
-app.use(methodOverride('_method'));
+
 
 const PORT = process.env.PORT || 6000;
 
