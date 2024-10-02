@@ -1,5 +1,7 @@
 const Reservation = require('../models/Reservation');
 
+
+
 exports.getAllReservations = async () => {
     return await Reservation.find();  // Logique métier ici
 };
@@ -8,11 +10,22 @@ exports.getReservationById = async (idReservation) => {
     return await Reservation.findById(idReservation);
 };
 
-exports.createReservation = async (reservationData) => {
-    const newReservation = new Reservation(reservationData);
+
+// Service pour créer une reservation
+exports.createReservation = async (catwayNumber, clientName, boatName, checkIn, checkOut) => {
+    const newReservation = new Reservation({
+        catwayNumber,
+        clientName,
+        boatName,
+        checkIn,
+        checkOut
+    });
+
+    // Sauvegarde de la nouvelle réservation dans MongoDB et retour de l'objet complet
     return await newReservation.save();
 };
 
-exports.deleteCatway = async (catwayNumber) => {
-    return await Catway.findOneAndDelete({ catwayNumber });
+// Service pour supprimer une reservation
+exports.deleteReservation = async (reservationId) => {
+    return await Reservation.findByIdAndDelete(reservationId);
 };
