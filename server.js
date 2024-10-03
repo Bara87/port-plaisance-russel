@@ -8,6 +8,9 @@ const userRoutes = require('./routes/users'); // Chemin vers vos routes
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
+const indexRouter = require('./routes/index');
+
+
 
 
 
@@ -34,6 +37,9 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Utilisez le routeur pour la page d'accueil
+app.use('/', indexRouter);
+
 
 
 const PORT = process.env.PORT || 6000;
@@ -42,16 +48,18 @@ const PORT = process.env.PORT || 6000;
 // Connexion à MongoDB
 connectDB(); // Appeler la fonction de connexion
 
-// Utiliser les routes 
-app.use('/catways', catwaysRoutes);
-app.use('/reservations', reservationsRoutes);
-app.use('/users', userRoutes); // Utilisation des routes utilisateurs
-
 // Middleware de gestion des erreurs
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
+
+
+
+// Utiliser les routes 
+app.use('/catways', catwaysRoutes);
+app.use('/reservations', reservationsRoutes);
+app.use('/users', userRoutes); // Utilisation des routes utilisateurs
 
 
 

@@ -1,7 +1,8 @@
 // routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController'); // Importer le contrôleur
+
+const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/auth'); // Importer le middleware
 
 // Créer un utilisateur (accessible à tous, pas besoin d'authentification)
@@ -21,8 +22,9 @@ router.get('/index', (req, res) => {
     res.render('index', { error: null }); // Passer une valeur nulle pour 'error'
 });
 
+
 // Route vers le tableau de bord (nécessite authentification)
-router.get('/dashboard', authMiddleware, (req, res) => {
+router.get('/dashboard', (req, res) => {
     res.render('dashboard', { user: req.user }); // Rendre la vue du tableau de bord avec les informations de l'utilisateur
 });
 
