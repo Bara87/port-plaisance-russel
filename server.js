@@ -11,14 +11,11 @@ const methodOverride = require('method-override');
 const indexRouter = require('./routes/index');
 const setupSwagger = require('./swagger');
 
-
-
 // Déterminer l'environnement (dev, prod, etc.)
 const env = process.env.NODE_ENV || 'dev';
 
 // Charger le fichier .env approprié en fonction de l'environnement
 dotenv.config({ path: `./env/.env.${env}` });
-
 
 // Créer l'application Express
 const app = express();
@@ -49,6 +46,9 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
+
+// Servir des fichiers statiques
+app.use(express.static('public'));
 
 // Utiliser les routes 
 app.use('/catways', catwaysRoutes);

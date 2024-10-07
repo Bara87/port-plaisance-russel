@@ -3,6 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Port Plaisance Russel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Centrer le formulaire */
+            margin: 20px auto; /* Ajoute de l'espace autour du formulaire */
+            width: 300px; /* Fixer la largeur du formulaire */
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block; /* Pour le rendre cliquable en plein écran */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Bienvenue sur Port Plaisance Russel</h1>
@@ -20,6 +98,6 @@
         <button type="submit">Se connecter</button>
     </form>
 
-    <p><a href="/api/docs">Documentation de l'API</a></p>
+    <p><a href="/api-docs">Documentation de l'API</a></p>
 </body>
 </html>

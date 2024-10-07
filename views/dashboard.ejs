@@ -3,8 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end; /* Aligne le contenu à droite */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            margin-left: 20px; /* Espacement entre les liens */
+            font-size: 18px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            display: block;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            width: auto;
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="/catways/list">Liste des catways</a>
+            <a href="/reservations/list">Liste des réservations</a>
+            <a href="#" id="logoutLink">Se déconnecter</a>
+        </nav>
+    </header>
     <h1>Tableau de bord</h1>
 
     <!-- Formulaire pour créer un utilisateur -->
@@ -74,11 +184,18 @@
         <input type="text" name="reservationId" placeholder="ID de la réservation" required>
         <button type="submit">Supprimer</button>
     </form>
-
-    <p><a href="/catways/list">Liste des catways</a></p>
-    <p><a href="/reservations/list">Liste des réservations</a></p>
-    <form action="/logout" method="POST">
-        <button type="submit">Se déconnecter</button>
+     <!-- Formulaire caché pour la déconnexion -->
+     <form id="logoutForm" action="/users/logout" method="POST" style="display: none;">
+        <input type="hidden" name="_method" value="POST">
     </form>
+
+    <script>
+        // Intercepter le clic sur le lien de déconnexion
+        document.getElementById('logoutLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien
+            console.log("Déconnexion en cours..."); // Message de débogage
+            document.getElementById('logoutForm').submit(); // Soumet le formulaire de déconnexion
+        });
+    </script>
 </body>
 </html>

@@ -12,7 +12,7 @@ exports.loginUser = async (req, res) => {
         const user = await userService.loginUser(email, password); // Appel au service
         const token = userService.generateToken(user); // Générer le token JWT
         res.cookie('token', token, { httpOnly: true }); // Stocker le token dans un cookie
-        res.redirect('/users/dashboard'); // Rediriger vers le tableau de bord après connexion réussie
+        res.redirect('/dashboard'); // Rediriger vers le tableau de bord après connexion réussie
     } catch (error) {
         console.log('Error during login:', error); // Log d'erreur
         const someErrorVariable = error.message || 'Erreur lors de la connexion.';
@@ -88,6 +88,6 @@ exports.deleteUser = async (req, res) => {
  */
 exports.logoutUser = (req, res) => {
     res.clearCookie('token');  // Supprimer le cookie contenant le token
-    res.redirect('/index');  // Rediriger vers la page de connexion
+    res.redirect('/');  // Rediriger vers la page de connexion
 };
 

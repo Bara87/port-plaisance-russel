@@ -3,16 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Réservations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center; /* Centre le texte */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%; /* Largeur du tableau */
+            margin: 0 auto; /* Centre le tableau */
+            border-collapse: collapse; /* Supprime les espaces entre les cellules */
+            background-color: #fff; /* Couleur de fond du tableau */
+            border-radius: 5px; /* Arrondit les coins du tableau */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre pour le tableau */
+        }
+
+        th, td {
+            padding: 15px; /* Espacement interne */
+            text-align: left; /* Alignement à gauche du texte */
+            border-bottom: 1px solid #ddd; /* Bordure entre les lignes */
+        }
+
+        th {
+            background-color: #007bff; /* Couleur de fond des en-têtes */
+            color: white; /* Couleur du texte des en-têtes */
+        }
+
+        a {
+            color: #007bff; /* Couleur des liens */
+            text-decoration: none; /* Pas de soulignement */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Soulignement au survol */
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     <h1>Liste des Réservations</h1>
-    <ul>
-        <!-- Boucle sur la liste des réservations -->
-        <% reservations.forEach(reservation => { %>
-            <li>
-                <a href="/reservations/detail/<%= reservation._id %>">Réservation de <%= reservation.clientName %> pour le Catway n° <%= reservation.catwayNumber %></a>
-        <% }); %>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Catway</th>
+                <th>Détails</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Boucle sur la liste des réservations -->
+            <% reservations.forEach(reservation => { %>
+                <tr>
+                    <td><%= reservation.clientName %></td>
+                    <td>Catway n° <%= reservation.catwayNumber %></td>
+                    <td><a href="/reservations/detail/<%= reservation._id %>">Voir les détails</a></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
 
     <p><a href="/dashboard">Retour au tableau de bord</a></p>
 </body>
