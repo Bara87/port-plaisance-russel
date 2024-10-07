@@ -2,9 +2,11 @@
   "name": "port-plaisance-russel",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "generate-doc": "node --max-old-space-size=4096 ./node_modules/.bin/jsdoc -r ./ -d ./docs"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +25,12 @@
     "nodemon": "^3.1.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "chai-http": "^5.0.0",
+    "jsdoc": "^4.0.3",
+    "mocha": "^10.7.3",
+    "sinon": "^19.0.2"
   }
 }

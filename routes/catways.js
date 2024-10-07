@@ -3,6 +3,7 @@ const router = express.Router();
 const { getAllCatways, getCatwayById, createCatway, updateCatwayState, deleteCatway } = require('../controllers/catwayController');
 const authMiddleware = require('../middleware/auth');
 
+
 /**
  * @swagger
  * /catways/list:

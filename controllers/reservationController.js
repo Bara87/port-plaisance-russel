@@ -1,6 +1,15 @@
 const reservationService = require('../services/reservationService');
 
-// Obtenir toutes les réservations pour un catway
+/**
+ * Obtenir toutes les réservations pour un catway.
+ * Récupère toutes les réservations et les renvoie dans une vue de liste.
+ * 
+ * @async
+ * @function getAllReservations
+ * @param {Object} req - L'objet de requête Express.
+ * @param {Object} res - L'objet de réponse Express.
+ * @returns {Promise<void>} Renvoie la liste des réservations ou une erreur serveur.
+ */
 exports.getAllReservations = async (req, res) => {
     try {
         const reservations = await reservationService.getAllReservations();
@@ -10,7 +19,17 @@ exports.getAllReservations = async (req, res) => {
     }
 };
 
-// Obtenir une réservation par ID
+
+/**
+ * Obtenir une réservation par ID.
+ * Récupère une réservation spécifique en fonction de son identifiant et renvoie la vue détaillée.
+ * 
+ * @async
+ * @function getReservationById
+ * @param {Object} req - L'objet de requête Express, contenant l'ID de la réservation dans `req.params`.
+ * @param {Object} res - L'objet de réponse Express.
+ * @returns {Promise<void>} Renvoie la réservation ou une erreur si non trouvée.
+ */
 exports.getReservationById = async (req, res) => {
     try {
         const reservation = await reservationService.getReservationById(req.params.idReservation);
@@ -21,7 +40,17 @@ exports.getReservationById = async (req, res) => {
     }
 };
 
-// Créer une nouvelle réservation
+
+/**
+ * Créer une nouvelle réservation.
+ * Valide les données de la réservation et crée une nouvelle entrée dans le système.
+ * 
+ * @async
+ * @function createReservation
+ * @param {Object} req - L'objet de requête Express, contenant les informations de la réservation dans `req.body`.
+ * @param {Object} res - L'objet de réponse Express.
+ * @returns {Promise<void>} Renvoie les détails de la réservation créée ou une erreur si les données sont invalides.
+ */
 exports.createReservation = async (req, res) => {
     try {
         const { catwayNumber, clientName, boatName, checkIn, checkOut } = req.body;
@@ -57,11 +86,21 @@ exports.createReservation = async (req, res) => {
     }
 };
 
-// Supprimer une réservation
+/**
+ * Supprimer une réservation.
+ * Supprime une réservation spécifique en fonction de son ID.
+ * 
+ * @async
+ * @function deleteReservation
+ * @param {Object} req - L'objet de requête Express, contenant l'ID de la réservation à supprimer dans `req.body`.
+ * @param {Object} res - L'objet de réponse Express.
+ * @returns {Promise<void>} Renvoie un message de succès ou une erreur si la réservation n'a pas été trouvée.
+ */
 exports.deleteReservation = async (req, res) => {
     const { reservationId } = req.body;
     try {
-        const deletedReservation = await reservationService.deleteReservation(reservationId);  // Appel au service de suppression de réservation
+        // Appel au service de suppression de réservation
+        const deletedReservation = await reservationService.deleteReservation(reservationId);  
         if (!deletedReservation) {
             return res.status(404).json({ message: 'Réservation non trouvée.' });
         }
