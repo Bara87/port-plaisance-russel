@@ -9,9 +9,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const indexRouter = require('./routes/index');
-
-
-
+const setupSwagger = require('./swagger');
 
 
 
@@ -29,9 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middleware pour gérer la méthode override
 app.use(methodOverride('_method'));
-
 app.use(cookieParser());
-
 
 // Configuration du moteur de template
 app.set('view engine', 'ejs');
@@ -40,10 +36,10 @@ app.set('views', path.join(__dirname, 'views'));
 // Utilisez le routeur pour la page d'accueil
 app.use('/', indexRouter);
 
-
+// Configuration de Swagger
+setupSwagger(app); // Appliquer Swagger à l'application
 
 const PORT = process.env.PORT || 6000;
-
 
 // Connexion à MongoDB
 connectDB(); // Appeler la fonction de connexion
@@ -54,14 +50,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 // Utiliser les routes 
 app.use('/catways', catwaysRoutes);
 app.use('/reservations', reservationsRoutes);
 app.use('/users', userRoutes); // Utilisation des routes utilisateurs
-
-
 
 // Démarrer le serveur
 app.listen(PORT, () => {
