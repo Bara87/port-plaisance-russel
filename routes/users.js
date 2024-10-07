@@ -141,28 +141,8 @@ router.post('/delete/:id', authMiddleware, userController.deleteUser);
  */
 router.post('/login', userController.loginUser);
 
-router.get('/index', (req, res) => {
-    // Pas besoin de logique pour récupérer des utilisateurs ou gérer des erreurs
-    res.render('index', { error: null }); // Passer une valeur nulle pour 'error'
-});
+// Route de déconnexion
+router.post('/logout', authMiddleware, userController.logoutUser);
 
-
-/**
- * @swagger
- * /users/dashboard:
- *   get:
- *     summary: Afficher le tableau de bord de l'utilisateur
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Tableau de bord affiché
- *       401:
- *         description: Non autorisé
- */
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard', { user: req.user }); // Rendre la vue du tableau de bord avec les informations de l'utilisateur
-});
 
 module.exports = router;

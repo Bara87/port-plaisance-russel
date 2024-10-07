@@ -1,19 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Catways</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center; /* Centre le texte du body */
+        }
+    
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+    
+        table {
+            width: 70%; /* Largeur du tableau réduite à 70% */
+            max-width: 800px; /* Largeur maximale pour éviter qu'il ne devienne trop large */
+            border-collapse: collapse; /* Fusionner les bordures */
+            margin: 0 auto; /* Centre le tableau */
+            margin-bottom: 20px; /* Espacement en bas */
+        }
+    
+        th, td {
+            border: 1px solid #ddd; /* Bordure des cellules */
+            padding: 12px; /* Espacement interne */
+            text-align: left; /* Alignement à gauche */
+        }
+    
+        th {
+            background-color: #007bff; /* Couleur de fond de l'en-tête */
+            color: white; /* Couleur du texte de l'en-tête */
+        }
+    
+        a {
+            color: #007bff; /* Couleur des liens */
+            text-decoration: none; /* Pas de soulignement */
+        }
+    
+        a:hover {
+            text-decoration: underline; /* Soulignement au survol */
+        }
+    
+        p {
+            margin-top: 20px; /* Marges au-dessus */
+            font-size: 18px; /* Taille de la police */
+        }
+    </style>
 </head>
 <body>
     <h1>Liste des Catways</h1>
-    <ul>
-        <!-- Boucle sur la liste des catways -->
-        <% catways.forEach(catway => { %>
-            <li>
-                <a href="/catways/detail/<%= catway._id %>">
-                    Catway n° <%= catway.catwayNumber %>
-                </a>
-            </li>
-        <% }); %>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Numéro du Catway</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Boucle sur la liste des catways -->
+            <% catways.forEach(catway => { %>
+                <tr>
+                    <td>
+                        <a href="/catways/detail/<%= catway._id %>">
+                            Catway n° <%= catway.catwayNumber %>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/catways/detail/<%= catway._id %>">Détails</a> <!-- Vous pouvez ajouter d'autres actions ici -->
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
 
     <p><a href="/dashboard">Retour au tableau de bord</a></p> <!-- Lien vers le tableau de bord -->
 </body>

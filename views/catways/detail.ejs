@@ -3,11 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Détails du Catway</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center; /* Centre le texte */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .catway-details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto; /* Centre le bloc de détails */
+            width: 80%; /* Largeur du bloc de détails */
+            max-width: 600px; /* Largeur maximale */
+            text-align: left; /* Alignement à gauche pour les détails */
+        }
+
+        p {
+            font-size: 18px; /* Taille de la police pour les détails */
+            margin-bottom: 10px; /* Espacement entre les paragraphes */
+        }
+
+        a {
+            display: inline-block; /* Pour centrer le lien de retour */
+            margin-top: 20px;
+            color: #007bff; /* Couleur des liens */
+            text-decoration: none; /* Pas de soulignement */
+            font-size: 18px; /* Taille de la police */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Soulignement au survol */
+        }
+    </style>
 </head>
 <body>
     <h1>Catway n° <%= catway.catwayNumber %></h1>
-    <p>Type : <%= catway.type %></p>
-    <p>État : <%= catway.catwayState %></p>
+    <div class="catway-details">
+       <p>Type : <%= catway.type %></p>
+       <p>État : <%= catway.catwayState %></p>
+   </div>
     <!-- Ajoutez ici d'autres informations si nécessaire -->
 
     <p><a href="/catways/list">Retour à la liste des Catways</a></p>

@@ -2,7 +2,6 @@
   "name": "port-plaisance-russel",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "nodemon server.js",
     "test": "mocha",

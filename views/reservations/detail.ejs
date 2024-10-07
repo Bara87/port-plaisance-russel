@@ -3,14 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Détails de la Réservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center; /* Centre le texte */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .reservation-details {
+            background-color: #fff; /* Couleur de fond */
+            border: 1px solid #ddd; /* Bordure */
+            padding: 20px; /* Espacement interne */
+            border-radius: 5px; /* Coins arrondis */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre pour le conteneur */
+            margin: 0 auto; /* Centre le bloc de détails */
+            width: 80%; /* Largeur du bloc de détails */
+            max-width: 600px; /* Largeur maximale */
+            text-align: left; /* Alignement à gauche pour les détails */
+        }
+
+        p {
+            font-size: 18px; /* Taille de la police pour les détails */
+            margin-bottom: 10px; /* Espacement entre les paragraphes */
+        }
+
+        a {
+            display: inline-block; /* Pour centrer le lien de retour */
+            margin-top: 20px; /* Espacement au-dessus du lien */
+            color: #007bff; /* Couleur des liens */
+            text-decoration: none; /* Pas de soulignement */
+            font-size: 18px; /* Taille de la police */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Soulignement au survol */
+        }
+    </style>
 </head>
 <body>
     <h1>Réservation de <%= reservation.clientName %></h1>
-    <p>Catway n° : <%= reservation.catwayNumber %></p>
-    <p>Nom du bateau : <%= reservation.boatName %></p>
-    <p>Date d'arrivée : <%= reservation.checkIn.toLocaleDateString() %></p>
-    <p>Date de départ : <%= reservation.checkOut.toLocaleDateString() %></p>
-    <!-- Ajoutez ici d'autres informations si nécessaire -->
+    <div class="reservation-details">
+        <p><strong>Catway n° :</strong> <%= reservation.catwayNumber %></p>
+        <p><strong>Nom du bateau :</strong> <%= reservation.boatName %></p>
+        <p><strong>Date d'arrivée :</strong> <%= reservation.checkIn.toLocaleDateString() %></p>
+        <p><strong>Date de départ :</strong> <%= reservation.checkOut.toLocaleDateString() %></p>
+        <!-- Ajoutez ici d'autres informations si nécessaire -->
+    </div>
 
     <p><a href="/reservations/list">Retour à la liste des réservations</a></p>
 </body>
