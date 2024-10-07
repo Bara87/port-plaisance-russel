@@ -3,9 +3,6 @@ const router = express.Router();
 const { getAllCatways, getCatwayById, createCatway, updateCatwayState, deleteCatway } = require('../controllers/catwayController');
 const authMiddleware = require('../middleware/auth');
 
-// Routes pour les catways
-
-
 
 // Route protégée pour afficher la page list de catways
 router.get('/list', authMiddleware, getAllCatways);

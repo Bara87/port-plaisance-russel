@@ -1,6 +1,10 @@
 const userService = require('../services/userService');
 
-// Fonction pour se connecter
+/**
+ * Fonction pour se connecter un utilisateur.
+ * @param {Object} req - La requête HTTP contenant les informations de connexion.
+ * @param {Object} res - La réponse HTTP pour renvoyer des données au client.
+ */
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -16,7 +20,12 @@ exports.loginUser = async (req, res) => {
     }
 };
 
-// Fonction pour créer un utilisateur 
+
+/**
+ * Fonction pour créer un utilisateur.
+ * @param {Object} req - La requête HTTP contenant les données de l'utilisateur.
+ * @param {Object} res - La réponse HTTP pour renvoyer des données au client.
+ */
 exports.createUser = async (req, res) => {
     try {
         const userData = req.body; // Les données envoyées par le formulaire
@@ -27,7 +36,12 @@ exports.createUser = async (req, res) => {
     }
 };
 
-// Fonction pour modifier un utilisateur
+
+/**
+ * Fonction pour modifier un utilisateur.
+ * @param {Object} req - La requête HTTP contenant l'ID de l'utilisateur et les données de mise à jour.
+ * @param {Object} res - La réponse HTTP pour renvoyer des données au client.
+ */
 exports.updateUser = async (req, res) => {
     try {
         const userId = req.params.id; // ID de l'utilisateur à mettre à jour
@@ -39,7 +53,12 @@ exports.updateUser = async (req, res) => {
     }
 };
 
-// Fonction pour supprimer 
+
+/**
+ * Fonction pour supprimer un utilisateur.
+ * @param {Object} req - La requête HTTP contenant l'ID de l'utilisateur à supprimer.
+ * @param {Object} res - La réponse HTTP pour renvoyer des données au client.
+ */
 exports.deleteUser = async (req, res) => {
     const userId = req.params.id; // Assurez-vous que c'est la bonne clé pour obtenir l'ID
 
@@ -61,7 +80,12 @@ exports.deleteUser = async (req, res) => {
     }
 };
 
-// Fonction pour déconnecter l'utilisateur
+
+/**
+ * Fonction pour déconnecter un utilisateur.
+ * @param {Object} req - La requête HTTP.
+ * @param {Object} res - La réponse HTTP pour renvoyer des données au client.
+ */
 exports.logoutUser = (req, res) => {
     res.clearCookie('token');  // Supprimer le cookie contenant le token
     res.redirect('/index');  // Rediriger vers la page de connexion
